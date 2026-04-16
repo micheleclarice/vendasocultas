@@ -1,11 +1,4 @@
 import { defineConfig } from 'vite'
-
-export default defineConfig({
-  build: {
-    minify: 'esbuild'
-  }
-})
-  import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
@@ -17,12 +10,11 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true
-      }
-    }
-  }
+    // Alterado de 'terser' para 'esbuild' para evitar o erro de instalação
+    minify: 'esbuild', 
+  },
+  // Se você quer remover o console.log usando o esbuild (padrão do Vite)
+  esbuild: {
+    drop: ['console', 'debugger'],
+  },
 })
